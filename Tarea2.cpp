@@ -6,11 +6,15 @@ using namespace std;
 
 int main(int argc, char const *argv[])
 {
-    string cadena, res;
+    string cadena;
     cout << "Ingrese la cadena" << endl;
     getline(cin, cadena);
-    regex expReg("^\\s |\\s$ |\\s\\s+");
-    res = regex_replace(cadena, expReg, "");
-    cout << res << endl;
+    regex expReg("\\s\\s+");// mas de 2 espacios
+    regex expReg2("(^|\n)\\s");// espacio al inicio
+    regex expReg3("(?=\n|$)\\s");// espacio al final
+    cadena = regex_replace(cadena, expReg, " ");
+    cadena = regex_replace(cadena, expReg2, "");
+    cadena = regex_replace(cadena, expReg3, "");
+    cout << cadena << endl;
     return 0;
 }
